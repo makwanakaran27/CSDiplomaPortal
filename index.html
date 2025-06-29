@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_self">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="D:\CS Diploma Portal\favicon.png">
+    <title>CS Diploma Study Portal | Free Study Materials</title>
+    <meta name="description"
+        content="Free study materials for Computer Science & Engineering diploma students (Semesters 1-6)">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Simplified CSS -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        /* Custom Colors */
+        :root {
+            --primary-color: #3b82f6;
+            --secondary-color: #1e40af;
+            --accent-color: #10b981;
+            --light-gray: #fcfafa;
+            /* bg-gray-50 */
+            --medium-gray: #f3f4f6;
+            /* bg-gray-100 */
+            --dark-gray-text: #4b5563;
+            /* text-gray-600 */
+            --darker-gray-text: #1f2937;
+            /* text-gray-800 */
+            --darkest-gray-bg: #1f2937;
+            /* bg-gray-800 */
+            --white-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--light-gray);
+            margin: 0;
+            line-height: 1.5;
+            color: var(--darker-gray-text);
+        }
+
+        /* General Container & Spacing */
+        .container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        section {
+            padding-top: 4rem;
+            /* py-16 */
+            padding-bottom: 4rem;
+            /* py-16 */
+        }
+
+        /* Headings */
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-weight: 700;
+            /* font-bold */
+            margin-top: 0;
+            margin-bottom: 1rem;
+            /* mb-4 */
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+
+        /* text-4xl */
+        h2 {
+            font-size: 1.875rem;
+            line-height: 2.25rem;
+        }
+
+        /* text-3xl */
+        h3 {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+
+        /* text-xl */
+        h4 {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+
+        /* text-lg */
+
+        /* Text Colors */
+        .text-primary {
+            color: var(--primary-color);
+        }
+
+        .text-secondary {
+            color: var(--secondary-color);
+        }
+
+        .text-accent {
+            color: var(--accent-color);
+        }
+
+        .text-white {
+            color: var(--white-color);
+        }
+
+        .text-gray-800 {
+            color: var(--darker-gray-text);
+        }
+
+        .text-gray-600 {
+            color: var(--dark-gray-text);
+        }
+
+        .text-gray-500 {
+            color: #6b7280;
+        }
+
+        .text-gray-400 {
+            color: #9ca3af;
+        }
+
+        /* Links & Buttons */
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+        }
+
+        a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            /* px-6 py-3 */
+            border-radius: 0.5rem;
+            /* rounded-lg */
+            font-weight: 500;
+            /* font-medium */
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            color: var(--white-color);
+            /* Keep text white on hover */
+        }
+
+        .btn-white {
+            background-color: var(--white-color);
+            color: var(--primary-color);
+        }
+
+        .btn-white:hover {
+            background-color: var(--medium-gray);
+            color: #10b981;
+        }
+
+        .btn-outline-white {
+            border: 2px solid var(--white-color);
+            color: var(--white-color);
+        }
+
+        .btn-outline-white:hover {
+            background-color: var(--white-color);
+            color: var(--primary-color);
+        }
+
+        /* Navigation */
+        header {
+            background-color: var(--white-color);
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            /* shadow-sm */
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            /* space-x-2 */
+        }
+
+        nav .nav-links {
+            display: none;
+            /* hidden by default */
+            gap: 1.5rem;
+            /* space-x-6 */
+        }
+
+        /* Hero Section */
+        .hero-gradient {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-color) 100%);
+            color: var(--white-color);
+            padding-top: 5rem;
+            /* py-20 */
+            padding-bottom: 5rem;
+            /* py-20 */
+            text-align: center;
+        }
+
+        .hero-gradient p {
+            max-width: 42rem;
+            /* max-w-2xl */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            /* mb-8 */
+            font-size: 1.25rem;
+            /* text-xl */
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            /* sm:flex-col */
+            justify-content: center;
+            gap: 1rem;
+            /* gap-4 */
+        }
+
+        /* Cards (Features & Materials) */
+        .card {
+            background-color: var(--white-color);
+            padding: 1.5rem;
+            /* p-6 */
+            border-radius: 0.75rem;
+            /* rounded-xl */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            /* shadow-sm */
+            transition: transform 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr; /* Default to single column for small screens */
+            gap: 20px;
+            width: 100%;
+            margin: auto;
+        }
+
+        .box {
+            background-color: aliceblue;
+            color: aqua;
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            border-radius: 10px;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-icon-wrapper {
+            width: 3rem;
+            /* w-12 */
+            height: 3rem;
+            /* h-12 */
+            border-radius: 9999px;
+            /* rounded-full */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            /* mb-4 */
+        }
+
+        .card-icon-wrapper.primary-bg-opacity {
+            background-color: rgba(59, 130, 246, 0.1);
+        }
+
+        .card-icon-wrapper.accent-bg-opacity {
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+
+        .card-icon-wrapper.secondary-bg-opacity {
+            background-color: rgba(30, 64, 175, 0.1);
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            /* gap-2 */
+            margin-bottom: 1rem;
+            /* mb-4 */
+        }
+
+        .card-tag {
+            background-color: var(--medium-gray);
+            /* bg-gray-100 */
+            color: var(--darker-gray-text);
+            /* text-gray-800 */
+            padding: 0.25rem 0.5rem;
+            /* px-2 py-1 */
+            border-radius: 0.25rem;
+            /* rounded */
+            font-size: 0.75rem;
+            /* text-xs */
+        }
+
+        .semester-tag {
+            padding: 0.25rem 0.75rem;
+            /* px-3 py-1 */
+            border-radius: 9999px;
+            /* rounded-full */
+            font-size: 0.875rem;
+            /* text-sm */
+        }
+
+        .semester-tag.basic {
+            background-color: rgba(59, 130, 246, 0.1);
+            color: var(--primary-color);
+        }
+
+        .semester-tag.intermediate {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--accent-color);
+        }
+
+        .semester-tag.advanced {
+            background-color: rgba(30, 64, 175, 0.1);
+            color: var(--secondary-color);
+        }
+
+
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-direction: column; /* Default to column for small screens */
+            align-items: center;
+            gap: 3rem;
+            /* gap-12 */
+        }
+
+        .about-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            /* rounded-xl */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            /* shadow-md */
+        }
+
+        .about-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            /* space-x-4 */
+        }
+
+        .about-author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            /* Assuming it's a circular image */
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            text-align: center;
+            padding-top: 4rem;
+            /* py-16 */
+            padding-bottom: 4rem;
+            /* py-16 */
+        }
+
+        .cta-section p {
+            max-width: 42rem;
+            /* max-w-2xl */
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2rem;
+            /* mb-8 */
+            font-size: 1.25rem;
+            /* text-xl */
+        }
+
+        .cta-section .btn {
+            padding: 1rem 2rem;
+            /* px-8 py-4 */
+            font-size: 1.125rem;
+            /* text-lg */
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darkest-gray-bg);
+            color: var(--white-color);
+            padding-top: 3rem;
+            /* py-12 */
+            padding-bottom: 3rem;
+            /* py-12 */
+        }
+
+        footer .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            /* Default to single column for small screens */
+            gap: 2rem;
+            /* gap-8 */
+        }
+
+        footer h4 {
+            font-size: 1.125rem;
+            /* text-lg */
+            font-weight: 600;
+            /* font-semibold */
+            margin-bottom: 1rem;
+            /* mb-4 */
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            /* space-y-2 */
+        }
+
+        footer .social-links {
+            display: flex;
+            gap: 1rem;
+            /* space-x-4 */
+        }
+
+        footer .social-links a {
+            color: var(--text-gray-400);
+        }
+
+        footer .social-links a:hover {
+            color: var(--white-color);
+        }
+
+        footer .contact-text {
+            margin-top: 1rem;
+            /* mt-4 */
+            color: var(--text-gray-400);
+        }
+
+        footer .contact-text a {
+            color: var(--primary-color);
+        }
+
+        footer .contact-text a:hover {
+            text-decoration: underline;
+        }
+
+        footer .copyright {
+            border-top: 1px solid #374151;
+            /* border-gray-700 */
+            margin-top: 2rem;
+            /* mt-8 */
+            padding-top: 2rem;
+            /* pt-8 */
+            text-align: center;
+            color: var(--text-gray-400);
+        }
+
+        /* Responsive Adjustments */
+
+        /* Small devices (sm) - 640px and up */
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+            }
+            .about-content {
+                flex-direction: column; /* Still column for small screens */
+            }
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr); /* 2 columns for small screens */
+            }
+        }
+
+        /* Medium devices (md) - 768px and up */
+        @media (min-width: 768px) {
+            nav .nav-links {
+                display: flex; /* Show nav links on medium screens */
+            }
+            h1 {
+                font-size: 3rem;
+                line-height: 1;
+            }
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr); /* Still 2 columns for medium screens */
+            }
+            .about-content {
+                flex-direction: row; /* Row for medium screens */
+            }
+            .about-content > div {
+                width: 50%;
+            }
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr); /* 4 columns for medium screens */
+            }
+        }
+
+        /* Large devices (lg) - 1024px and up */
+        @media (min-width: 1024px) {
+            .grid-container {
+                grid-template-columns: repeat(3, 1fr); /* 3 columns for large screens */
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <header>
+        <nav class="container">
+            <div class="logo">
+                <i class="fas fa-laptop-code text-2xl text-primary"></i>
+                <span class="text-xl font-bold text-gray-800">CS Diploma Portal</span>
+            </div>
+            <div class="nav-links">
+                <a href="#materials">Study Materials</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+            </div>
+            <div>
+                <a href="#materials" class="btn btn-primary">Browse Materials</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-gradient">
+        <div class="container">
+            <h1>Free Study Materials for CS Diploma Students</h1>
+            <p>Access complete study resources for all 6 semesters of Computer Science & Engineering diploma program</p>
+            <div class="hero-buttons">
+                <a href="#materials" class="btn btn-white">Explore Materials</a>
+                <!--<a href="#materials" class="btn btn-outline-white">Browse Materials</a>-->
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="bg-white">
+        <div class="container">
+            <h2 class="text-center mb-12 text-gray-800">Why Choose Our Platform</h2>
+            <div class="grid-container">
+                <div class="card card-hover">
+                    <div class="card-icon-wrapper primary-bg-opacity">
+                        <i class="fas fa-book-open text-primary text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-800">Complete Syllabus</h3>
+                    <p class="text-gray-600">Materials covering all subjects from Semester 1 to 6 with detailed
+                        explanations.</p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon-wrapper accent-bg-opacity">
+                        <i class="fas fa-user-graduate text-accent text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-800">Student-Created</h3>
+                    <p class="text-gray-600">Resources prepared by diploma students who understand your needs perfectly.
+                    </p>
+                </div>
+                <div class="card card-hover">
+                    <div class="card-icon-wrapper secondary-bg-opacity">
+                        <i class="fas fa-lock-open text-secondary text-xl"></i>
+                    </div>
+                    <h3 class="text-gray-800">100% Free Access</h3>
+                    <p class="text-gray-600">No hidden charges - access all materials forever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Materials Section -->
+    <section id="materials" class="bg-gray-50">
+        <div class="container">
+            <h2 class="text-center mb-12 text-gray-800">Study Materials by Semester</h2>
+            <div class="grid-container">
+
+                <!-- Semester 1 -->
+                <div class="card card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-gray-800">Semester 1</h3>
+                        <span class="semester-tag basic">Basic</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Introduction to Computer Science, Mathematics, and Engineering
+                        fundamentals.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Mathematics</span>
+                        <span class="card-tag">Physics</span>
+                        <span class="card-tag">Basic Electronics</span>
+                        <span class="card-tag">Communication Skills in English</span>
+                        <span class="card-tag">C Programming</span>
+                    </div>
+                    <a href="pyallpractical.html" class="btn btn-primary w-full block">View Materials</a>
+                </div>
+
+                <!-- Semester 2 -->
+                <div class="card card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-gray-800">Semester 2</h3>
+                        <span class="semester-tag basic">Basic</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Programming fundamentals, Digital Electronics, and more advanced
+                        mathematics.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">C Programming</span>
+                        <span class="card-tag">Digital Electronics</span>
+                        <span class="card-tag">Engineering Drawing</span>
+                    </div>
+                    <a href="D:\CS Diploma Portal\SEM 2\syllabus.html" class="btn btn-primary w-full block">View
+                        Materials</a>
+                </div>
+
+                <!-- Semester 3 -->
+                <div class="card card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-gray-800">Semester 3</h3>
+                        <span class="semester-tag intermediate">Intermediate</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Data Structures, Computer Organization, and Object-Oriented
+                        Programming.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Data Structures</span>
+                        <span class="card-tag">OOP with C++</span>
+                        <span class="card-tag">Computer Organization</span>
+                    </div>
+                    <a href="#" class="btn btn-primary w-full block">View Materials</a>
+                </div>
+
+                <!-- Semester 4 -->
+                <div class="card card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-gray-800">Semester 4</h3>
+                        <span class="semester-tag intermediate">Intermediate</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Database Systems, Operating Systems, and Web Development basics.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">DBMS</span>
+                        <span class="card-tag">Operating Systems</span>
+                        <span class="card-tag">Web Technologies</span>
+                    </div>
+                    <a href="#" class="btn btn-primary w-full block">View Materials</a>
+                </div>
+
+                <!-- Semester 5 -->
+                <div class="card card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-gray-800">Semester 5</h3>
+                        <span class="semester-tag advanced">Advanced</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Computer Networks, Software Engineering, and elective subjects.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Computer Networks</span>
+                        <span class="card-tag">Software Engineering</span>
+                        <span class="card-tag">Java Programming</span>
+                    </div>
+                    <a href="#" class="btn btn-primary w-full block">View Materials</a>
+                </div>
+
+                <!-- Semester 6 -->
+                <div class="card card-hover">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-gray-800">Semester 6</h3>
+                        <span class="semester-tag advanced">Advanced</span>
+                    </div>
+                    <p class="text-gray-600 mb-4">Project work, Industrial Training, and emerging technologies.</p>
+                    <div class="card-tags">
+                        <span class="card-tag">Project Work</span>
+                        <span class="card-tag">Cloud Computing</span>
+                        <span class="card-tag">Industrial Training</span>
+                    </div>
+                    <a href="#" class="btn btn-primary w-full block">View Materials</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-white">
+        <div class="container">
+            <div class="about-content">
+                <div>
+                    <img src="https://picsum.photos/600/400?random=1" alt="Student studying" class="about-image"
+                        loading="lazy">
+                </div>
+                <div>
+                    <h2 class="mb-6 text-gray-800">About This Initiative</h2>
+                    <p class="text-gray-600 mb-4">As a Computer Science & Engineering diploma student myself, I
+                        understand the challenges of finding quality study materials. This platform was created to help
+                        fellow students access well-organized resources for all semesters.</p>
+                    <p class="text-gray-600 mb-6">All materials are carefully curated from my personal notes, reference
+                        books, and practical experiences throughout the diploma program.</p>
+                    <div class="about-author">
+                        <div class="img"><img
+                                src="https://drive.google.com/file/d/1jwE5knG4kpPHvBImAFcwHUpCgVrz1vKv/view?usp=drive_link"
+                                alt="">
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-800">Your Fellow Student</h4>
+                            <p class="text-sm text-gray-500">Computer Science & Engineering Diploma</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2 class="mb-6">Explore All Study Materials Now!</h2>
+            <p>No registration needed - get unlimited access to all resources
+                for all 6 semesters.</p>
+            <a href="#materials" class="btn btn-white">Browse All Materials</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo">
+                        <i class="fas fa-laptop-code text-2xl text-primary"></i>
+                        <span class="text-xl font-bold">CS Diploma Portal</span>
+                    </div>
+                    <p class="text-gray-400">Free study materials for Computer Science & Engineering diploma students.
+                    </p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#materials" class="text-gray-400">Study Materials</a></li>
+                        <li><a href="#features" class="text-gray-400">Features</a></li>
+                        <li><a href="#about" class="text-gray-400">About</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Semesters</h4>
+                    <ul>
+                        <li><a href="#" class="text-gray-400">Semester 1-2</a></li>
+                        <li><a href="#" class="text-gray-400">Semester 3-4</a></li>
+                        <li><a href="#" class="text-gray-400">Semester 5-6</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Connect</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p class="contact-text">Have questions? <a href="#">Contact us</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 CS Diploma Portal. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Combined JavaScript from script.js -->
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId !== '#') {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
